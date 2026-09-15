@@ -201,6 +201,7 @@
                     posting # Modern API client that lives in your terminal.
                     pre-commit
                     protobuf
+                    pyright
                     tree
                     uv
                     vim
