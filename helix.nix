@@ -27,7 +27,7 @@ let
       lockFile = "${helix-steel}/Cargo.lock";
       outputHashes = {
         # steel-core, steel-derive, steel-doc, etc. all come from the same git rev
-        "steel-core-0.8.2" = "sha256-TP1hmlju7h7ce0dnSKuIMk7XK5kcloqiyR+sxumNsQk=";
+        "steel-core-0.8.3" = "sha256-o8/8x5B+ZXOBlf3+s74hvN/pDXl0ed2xKyYh9hs5aRI=";
       };
     };
 
