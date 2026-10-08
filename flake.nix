@@ -54,6 +54,10 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-crmne = {
+      url = "github:crmne/homebrew-tap";
+      flake = false;
+    };
   };
 
   outputs =
@@ -251,6 +255,7 @@
                   taps = {
                     "homebrew/homebrew-core" = inputs.homebrew-core;
                     "homebrew/homebrew-cask" = inputs.homebrew-cask;
+                    "crmne/homebrew-tap" = inputs.homebrew-crmne;
                   };
                   mutableTaps = false;
                 };
@@ -269,6 +274,7 @@
                     "emacs-app"
                     "ghostty"
                     "spotify"
+                    "crmne/tap/spotifast"
                     "sublime-text"
                     "tableplus"
                     "yubico-authenticator"

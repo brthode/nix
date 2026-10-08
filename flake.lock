@@ -171,6 +171,22 @@
         "type": "github"
       }
     },
+    "homebrew-crmne": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791226700,
+        "narHash": "sha256-1RuezH2wl1/NKr8w6Al2/Ob0Oaa1uLmi9U+Omy3c1mw=",
+        "owner": "crmne",
+        "repo": "homebrew-tap",
+        "rev": "a8bcb2b8acc86184816d0830327c1a9495fe4f92",
+        "type": "github"
+      },
+      "original": {
+        "owner": "crmne",
+        "repo": "homebrew-tap",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -265,6 +281,7 @@
         "home-manager": "home-manager_2",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
+        "homebrew-crmne": "homebrew-crmne",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nix-secrets": "nix-secrets",
