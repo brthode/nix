@@ -597,6 +597,10 @@
                       ulimit -f unlimited
                       ulimit -n 65536
 
+                      # /etc/zshrc's bare `brew shellenv` resolves to the Rosetta (/usr/local)
+                      # brew because /usr/local/bin is already on PATH; prefer the arm64 prefix.
+                      [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
                       export PATH="$HOME/.local/bin:$PATH"
 
                       # Option+Left/Right (Ghostty sends CSI 1;3D / 1;3C, see ghostty.nix)
