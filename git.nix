@@ -70,6 +70,10 @@
         navigate = true;
         features = "zebra-light";
         "side-by-side" = true;
+        # herdr captures the mouse and only forwards wheel events to pane
+        # apps that request mouse reporting; plain less doesn't, so the wheel
+        # did nothing. --mouse makes less request it.
+        pager = "less -R --mouse";
       };
       merge.conflictstyle = "diff3";
       diff.colorMoved = "default";
