@@ -236,7 +236,10 @@
                       kubectl
                       rancher
                       redis
-                      teleport
+                      # RDP client disabled: Go 1.26 cgo rejects the Rust librdp_client.a on
+                      # darwin ("disallowed LTO section __LLVM,__bitcode"). Only needed for
+                      # the server-side Windows desktop service, not tsh/tctl/tbot.
+                      (teleport_18.override { withRdpClient = false; })
                     ]
                   )
                   ++ lib.optionals (!isWork) (
@@ -485,6 +488,7 @@
                     ./helix.nix
                     ./spacemacs.nix
                     ./herdr.nix
+                    ./ghostty.nix
                     ./colima.nix
                   ];
                   # Set the state version for home-manager for backwards compatibility.
@@ -594,6 +598,10 @@
                       ulimit -n 65536
 
                       export PATH="$HOME/.local/bin:$PATH"
+
+                      # Option+Left/Right (Ghostty sends CSI 1;3D / 1;3C, see ghostty.nix)
+                      bindkey '^[[1;3D' backward-word
+                      bindkey '^[[1;3C' forward-word
 
                       g.rp() {
                         git ls-files --full-name "$1" | pbcopy
