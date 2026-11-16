@@ -31,6 +31,10 @@ let
       };
     };
 
+    # Steel is behind a cargo feature in the fork (upstream builds with
+    # `cargo install --features steel,git`); without it init.scm is silently ignored.
+    buildFeatures = [ "steel" "git" ];
+
     nativeBuildInputs = with pkgs; [ installShellFiles ];
 
     env = {
