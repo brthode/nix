@@ -236,7 +236,10 @@
                       kubectl
                       rancher
                       redis
-                      teleport
+                      # RDP client disabled: Go 1.26 cgo rejects the Rust librdp_client.a on
+                      # darwin ("disallowed LTO section __LLVM,__bitcode"). Only needed for
+                      # the server-side Windows desktop service, not tsh/tctl/tbot.
+                      (teleport_18.override { withRdpClient = false; })
                     ]
                   )
                   ++ lib.optionals (!isWork) (
