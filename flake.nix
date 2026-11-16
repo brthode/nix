@@ -488,6 +488,7 @@
                     ./helix.nix
                     ./spacemacs.nix
                     ./herdr.nix
+                    ./ghostty.nix
                     ./colima.nix
                   ];
                   # Set the state version for home-manager for backwards compatibility.
@@ -597,6 +598,10 @@
                       ulimit -n 65536
 
                       export PATH="$HOME/.local/bin:$PATH"
+
+                      # Option+Left/Right (Ghostty sends CSI 1;3D / 1;3C, see ghostty.nix)
+                      bindkey '^[[1;3D' backward-word
+                      bindkey '^[[1;3C' forward-word
 
                       g.rp() {
                         git ls-files --full-name "$1" | pbcopy
