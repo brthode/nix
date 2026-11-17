@@ -508,7 +508,6 @@
                     jq
                     lastpass-cli
                     ripgrep
-                    starship
                     zellij
                   ];
 
@@ -676,6 +675,18 @@
                         export GITHUB_TOKEN=$(cat "/Users/${username}/.github-pat")
                       fi
                     '';
+                  };
+
+                  programs.starship = {
+                    enable = true;
+                    # starship.toml is the catppuccin-powerline preset
+                    # (`starship preset catppuccin-powerline -o starship.toml`), with the
+                    # lavender $time segment removed from `format` so the bar ends after sapphire.
+                    # Regenerating it brings that segment back; re-apply the edit.
+                    settings = lib.recursiveUpdate (lib.importTOML ./starship.toml) {
+                      add_newline = false;
+                      time.disabled = true;
+                    };
                   };
                 };
               }
