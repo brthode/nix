@@ -557,16 +557,6 @@
                     enable = true;
                   };
 
-                  programs.zoxide = {
-                    enable = true;
-                    enableZshIntegration = true;
-                  };
-
-                  programs.fzf = {
-                    enable = true;
-                    enableZshIntegration = true;
-                  };
-
                   programs.direnv = {
                     enable = true;
                     enableZshIntegration = true;
@@ -686,6 +676,33 @@
                     settings = lib.recursiveUpdate (lib.importTOML ./starship.toml) {
                       add_newline = false;
                       time.disabled = true;
+                    };
+                  };
+
+                  # `cd` gains frecency jumping; `cdi` is the fzf picker.
+                  programs.zoxide = {
+                    enable = true;
+                    enableZshIntegration = true;
+                    options = [ "--cmd cd" ];
+                  };
+
+                  # Ctrl-R history, Ctrl-T files, Alt-C dirs.
+                  programs.fzf = {
+                    enable = true;
+                    enableZshIntegration = true;
+                    defaultCommand = "fd --type f --hidden --exclude .git";
+                    defaultOptions = [
+                      "--height 40%"
+                      "--layout=reverse"
+                      "--border"
+                    ];
+                    fileWidget = {
+                      command = "fd --type f --hidden --exclude .git";
+                      options = [ "--preview 'bat --color=always --line-range :200 {}'" ];
+                    };
+                    changeDirWidget = {
+                      command = "fd --type d --hidden --exclude .git";
+                      options = [ "--preview 'eza --tree --level=2 {}'" ];
                     };
                   };
                 };

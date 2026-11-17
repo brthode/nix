@@ -8,5 +8,7 @@
   home.file.".config/ghostty/config".text = ''
     keybind = alt+arrow_left=csi:1;3D
     keybind = alt+arrow_right=csi:1;3C
+    # Left Option acts as Alt (fzf Alt-C etc.); right Option still types ç, ∂, …
+    macos-option-as-alt = left
   '';
 }
