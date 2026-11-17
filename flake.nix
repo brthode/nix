@@ -581,6 +581,52 @@
 
                   programs.zsh = {
                     enable = true;
+                    history = {
+                      size = 100000;
+                      save = 100000;
+                      share = true;
+                      ignoreDups = true;
+                      ignoreSpace = true;
+                      extended = true;
+                    };
+                    # Every cd pushes onto the dir stack: popd goes back, `cd -<Tab>` picks.
+                    setOptions = [
+                      "AUTO_PUSHD"
+                      "PUSHD_IGNORE_DUPS"
+                      "PUSHD_MINUS"
+                      "PUSHD_SILENT"
+                    ];
+                    autosuggestion = {
+                      enable = true;
+                      highlight = "fg=8";
+                      strategy = [
+                        "history"
+                        "completion"
+                      ];
+                    };
+                    syntaxHighlighting = {
+                      enable = true;
+                      # home-manager always adds "main" itself.
+                      highlighters = [
+                        "brackets"
+                        "pattern"
+                      ];
+                      patterns = {
+                        "rm -rf *" = "fg=white,bold,bg=red";
+                      };
+                    };
+                    # Type part of a command, then ↑/↓ cycles matching history.
+                    historySubstringSearch = {
+                      enable = true;
+                      searchUpKey = [
+                        "^[[A"
+                        "^[OA"
+                      ];
+                      searchDownKey = [
+                        "^[[B"
+                        "^[OB"
+                      ];
+                    };
                     shellAliases = {
                       "nix-switch" =
                         "sudo nix run nix-darwin --extra-experimental-features \"nix-command flakes\" -- switch --flake ~/nix";
@@ -606,6 +652,14 @@
                       # Option+Left/Right (Ghostty sends CSI 1;3D / 1;3C, see ghostty.nix)
                       bindkey '^[[1;3D' backward-word
                       bindkey '^[[1;3C' forward-word
+
+                      # ↑/↓ substring search: show each matching command once
+                      HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+
+                      # Ctrl-X Ctrl-E: edit the current command line in $EDITOR
+                      autoload -Uz edit-command-line
+                      zle -N edit-command-line
+                      bindkey '^X^E' edit-command-line
 
                       g.rp() {
                         git ls-files --full-name "$1" | pbcopy
