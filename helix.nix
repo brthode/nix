@@ -135,10 +135,6 @@ in
           name = "python";
           auto-format = true;
           language-servers = [ "basedpyright" "ruff" "fs-watcher-lsp" ];
-          formatter = {
-            command = "ruff";
-            args = [ "format" "--stdin-filename" "file.py" "-" ];
-          };
         }
       ];
 
