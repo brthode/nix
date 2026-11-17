@@ -1,4 +1,5 @@
 {
+  "cli_default_open_behavior": "new_window",
   "project_panel": {
     "entry_spacing": "comfortable",
     "dock": "left",
@@ -20,6 +21,7 @@
   "theme": "One Dark Pro",
   "use_system_prompts": true,
   "agent": {
+    "dock": "right",
     "inline_assistant_model": {
       "provider": "copilot_chat",
       "model": "claude-4.6-sonnet",
@@ -29,17 +31,12 @@
         "name": "Ask",
         "tools": {
           "search_web": true,
-          "contents": true,
           "diagnostics": true,
           "fetch": true,
           "list_directory": true,
-          "project_notifications": true,
-          "now": true,
           "find_path": true,
           "read_file": true,
-          "open": true,
           "grep": true,
-          "thinking": true,
         },
         "enable_all_context_servers": false,
       },
