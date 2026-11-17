@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
 
+let
+  aspell = pkgs.aspellWithDicts (d: [ d.en ]);
+in
 {
+  home.packages = [ aspell ];
+
   home.activation.installSpacemacs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     SPACEMACS_DIR="$HOME/.emacs.d"
     SPACEMACS_REPO="https://github.com/syl20bnr/spacemacs"
@@ -119,7 +124,7 @@
        dotspacemacs-enable-server nil
        dotspacemacs-server-socket-dir nil
        dotspacemacs-persistent-server nil
-       dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+       dotspacemacs-search-tools '("rg" "ag" "ack" "grep")
        dotspacemacs-frame-title-format "%I@%S"
        dotspacemacs-icon-title-format nil
        dotspacemacs-show-trailing-whitespace t
@@ -139,6 +144,7 @@
 
     (defun dotspacemacs/user-load ())
 
-    (defun dotspacemacs/user-config ())
+    (defun dotspacemacs/user-config ()
+      (setq ispell-program-name "${aspell}/bin/aspell"))
   '';
 }
