@@ -676,6 +676,7 @@
                     settings = lib.recursiveUpdate (lib.importTOML ./starship.toml) {
                       add_newline = false;
                       time.disabled = true;
+                      cmd_duration.disabled = true;
                     };
                   };
 
